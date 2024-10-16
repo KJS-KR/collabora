@@ -5,13 +5,13 @@ from .models import Comment
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = [
-        "author", 
+        "author",
         "post",
     ]
-    
+
     fieldsets = [
         (
-            "기본정보",
+            "Basic Info",
             {
                 "fields": [
                     "author",
@@ -20,7 +20,7 @@ class CommentAdmin(admin.ModelAdmin):
                     "content",
                     "likes",
                     "dislikes",
-                    "status"
+                    "status",
                 ],
             },
         ),

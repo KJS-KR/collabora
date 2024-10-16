@@ -5,53 +5,40 @@ from .models import User, Team
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
     list_display = [
-        "username", 
-        "name", 
-        "email", 
-        "team", 
-        "permission", 
-        "position", 
-        "role"
+        "username",
+        "name",
+        "email",
+        "team",
+        "permission",
+        "position",
+        "role",
     ]
-    
+
     fieldsets = [
         (
-            "기본정보",
+            "Basic Info",
             {
                 "fields": [
                     "username",
-                    "password", 
+                    "password",
                     "name",
                     "contact",
                     "email",
-                    "birthdate"
+                    "birthdate",
                 ]
-            }
+            },
         ),
-        (
-            "세부정보",
-            {
-                "fields": [
-                    "team",
-                    "permission",
-                    "position",
-                    "role"
-                ]
-            }
-        ),
+        ("Detail Info", {"fields": ["team", "permission", "position", "role"]}),
     ]
 
 
 @admin.register(Team)
 class TeamAdmin(admin.ModelAdmin):
-    list_display = [
-        "name", 
-        "leader"
-    ]
+    list_display = ["name", "leader"]
 
     fieldsets = [
         (
-            "기본정보",
+            "Basic Info",
             {
                 "fields": [
                     "name",
@@ -59,6 +46,6 @@ class TeamAdmin(admin.ModelAdmin):
                     "leader",
                     "members",
                 ]
-            }
+            },
         )
     ]
