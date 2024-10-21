@@ -93,7 +93,6 @@ class Team(TimeStampedModel):
         related_name="members",
         verbose_name="팀원",
         blank=True,
-        null=True,
     )
 
     class Meta:
