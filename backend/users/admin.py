@@ -14,6 +14,7 @@ class UserAdmin(admin.ModelAdmin):
         "permission",
         "position",
         "role",
+        "last_login",
     ]
 
     search_fields = ["username", "name", "email"]
@@ -41,6 +42,7 @@ class UserAdmin(admin.ModelAdmin):
                     "position",
                     "role",
                     "is_active",
+                    "last_login",
                 ]
             },
         ),

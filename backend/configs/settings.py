@@ -10,6 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+# Django Libraries
+from django.utils.timezone import timedelta
+
+# Python Libraries
 from dotenv import load_dotenv
 from pathlib import Path
 import os
@@ -35,6 +39,7 @@ ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 # 애플리케이션 정의
 CUSTOM_APPS = [
+    "core.apps.CoreConfig",
     "users.apps.UsersConfig",
     "posts.apps.PostsConfig",
     "comments.apps.CommentsConfig",
@@ -147,9 +152,34 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 REST_FRAMEWORK = {
     # 모든 API요청에 대해 인증된 사용자만 접근하도록 설정
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    # "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated"),
+    # 모든 요청 허용
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.AllowAny",),
     # 인증 방법으로는 Json Wep Token을 통해 사용자 인증
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
+        # "rest_framework_simplejwt.authentication.JWTAuthentication"
     ),
 }
+
+# JWT 옵션 설정
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=50),  # 액세스 토큰 유효기간 설정
+    "REFRESH_TOKEN_LIFETIME": timedelta(minutes=100),  # 리프레시 토큰 유효기간 설정
+    "ROTATE_REFRESH_TOKENS": False,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "UPDATE_LAST_LOGIN": True,
+    "ALGORITHM": "HS256",
+    "SIGNING_KEY": os.getenv("JWT_SECRET_KEY"),
+    "VERIFYING_KEY": None,
+    "AUDIENCE": None,
+    "ISSUER": None,
+    "AUTH_HEADER_TYPES": ("Bearer",),
+    "AUTH_HEADER_NAME": "HTTP_AUTHORIZATION",
+    "USER_AUTHENTICATION_RULE": "rest_framework_simplejwt.authentication.default_user_authentication_rule",
+    "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
+    "TOKEN_TYPE_CLAIM": "token_type",
+    "JTI_CLAIM": "jti",
+}
+
+# JWT 사용 여부 설정
+REST_USE_JWT = True
