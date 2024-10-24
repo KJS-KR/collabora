@@ -1,6 +1,6 @@
 * ref
-    - [gitignore templete]https://www.toptal.com/developers/gitignore
-    - [project ERD]https://www.erdcloud.com/d/N3jQRRx5QWu5R99qK
+    - [gitignore templete](https://www.toptal.com/developers/gitignore)
+    - [project ERD](https://www.erdcloud.com/d/N3jQRRx5QWu5R99qK)
 
 * 작업 내용
     - 20241005
@@ -14,4 +14,3 @@
         - 모델별 Serializer, Viewset 구성
         - users.urls.py에 django URL 디스패치, Routing 예시 구현
         - 모델 CRUD, JWT 기반 Login API 구현
-        
