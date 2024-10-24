@@ -155,7 +155,7 @@ REST_FRAMEWORK = {
     # "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated"),
     # 모든 요청 허용
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.AllowAny",),
-    # 인증 방법으로는 Json Wep Token을 통해 사용자 인증
+    # 인증 방법으로는 Json Web Token을 통해 사용자 인증
     "DEFAULT_AUTHENTICATION_CLASSES": (
         # "rest_framework_simplejwt.authentication.JWTAuthentication"
     ),
